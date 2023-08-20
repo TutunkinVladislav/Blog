@@ -1,3 +1,32 @@
 from django.contrib import admin
 
-# Register your models here.
+from films.models import Genre, Post, Comment
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = (
+        'user', 'genre', 'title',
+        'year', 'country', 'director',
+        'actors', 'play_minutes', 'date'
+    )
+    list_per_page = 10
+    search_fields = ('title', 'director', 'actors')
+    date_hierarchy = 'date'
+    list_filter = ('genre',)
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('film', 'name', 'text')
+    list_per_page = 10
+
+
+@admin.register(Genre)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ('title', 'count_films')
+
+    def count_films(self, obj):
+        return obj.genre.count()
+
+    count_films.short_description = 'Количество фильмов'

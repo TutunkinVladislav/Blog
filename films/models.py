@@ -40,7 +40,8 @@ class Post(models.Model):
         Genre,
         on_delete=models.SET_NULL,
         null=True,
-        verbose_name='Жанр'
+        verbose_name='Жанр',
+        related_name='genre'
     )
     title = models.CharField(
         verbose_name='Заголовок',
@@ -74,8 +75,8 @@ class Post(models.Model):
     )
     play = models.IntegerField(
         verbose_name='Продолжительность',
-        help_text='В секундах',
-        validators=[MinValueValidator(1)]
+        help_text='В минутах',
+        validators=[MinValueValidator(1), MaxValueValidator(210)]
     )
     date = models.DateField(
         auto_now_add=True,
@@ -87,12 +88,24 @@ class Post(models.Model):
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
 
+    def play_minutes(self):
+        return str(self.play) + ' мин.'
+
+    play_minutes.short_description = 'Продолжительность'
+
     def __str__(self):
-        return self.title
+        return f'{self.title} ({self.genre.title})'
 
 
 class Comment(models.Model):
     """Модель комментариев"""
+    film = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name='Фильм'
+    )
     name = models.CharField(
         verbose_name='Имя',
         max_length=70
