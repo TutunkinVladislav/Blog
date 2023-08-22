@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+{% block content %}
+    <div class="gallery">
+        <div class="container">
+                `<div class="gallery-info">`
+                <h3>Фильмы</h3>
+                <p>
+                    Область человеческой деятельности, связанная с созданием и воспроизведением фильмов, называется
+                    кинематографом. Кинематограф включает в себя область применения фильма как одного из направлений
+                    искусства (киноискусство), (кинотехнику), а также киноиндустрию.
+                </p>
+                <p>
+                    Просмотр фильмов является частью современной культуры. Герои популярных фильмов и актёры, их играющие,
+                    зачастую становятся знаменитыми, а их образы узнаваемыми. Специально для массового просмотра фильмов
+                    строят кинотеатры. Обычно продолжительность фильма составляет 90—120 минут (полтора—два часа).
+                </p>
+            </div>
+            <div class="portfolio-mian">
+                <div class="portfolio-top">
+                    {% for film in films %}
+                        {% cycle '<div class="col-md-3 port-1-left">' '' %}
+                            <div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+                                <div class="portfolio-wrapper">
+                                    <a href="#" class="b-link-stripe b-animate-go" title="">
+                                        <img src="{{ film.image.url }}">
+                                        <div class="b-wrapper"><h2 class="b-animate b-from-left prt-1  b-delay03 ">{{ film.title }}</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        {% if forloop.last %}
+                            </div>
+                        {% else %}
+                            {% cycle '' '</div>' %}
+                        {% endif %} 
+                    {% endfor %}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+                {% load static %}
+                <link rel="stylesheet" href="{% static 'css/swipebox.css' %}">
+				<script src="{% static 'js/jquery.swipebox.min.js' %}" ></script>
+			    <script type="text/javascript">
+					jQuery(function($) {
+						$(".swipebox").swipebox();
+					});
+				</script>
+        </div>
+    </div>
+{% endblock %}
