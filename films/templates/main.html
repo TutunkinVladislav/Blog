@@ -24,13 +24,13 @@
 			<div class="banner-grids">
 				<div class="banner-grid-left">
 					<div class="header-logo">
-						<a href="index.html"><img class="logo" src="{% static 'images/logo.png' %}" alt="" /></a>
+						<a href="{% url 'index' %}"><img class="logo" src="{% static 'images/logo.png' %}" alt="" /></a>
 					</div>
 					<div class="top-nav">
 							<ul class="cl-effect-1">
-								<li><a href="index.html">Главная</a></li>
+								<li><a href="{% url 'index' %}">Главная</a></li>
                                 {% for genre in genres %}
-                                    <li><a href="about.html">{{ genre.title }}</a></li>
+                                    <li><a href="{% url 'page_genre' genre.pk %}">{{ genre.title }}</a></li>
                                 {% endfor %}
 
 							</ul>
@@ -48,19 +48,22 @@
 				<div class="clearfix"> </div>
 			</div>
 	</div>
+
 	{% block content %}{% endblock %}
-	<div class="footer">
+
+    <div class="footer">
 		<!-- container -->
 		<div class="container">
 			<div class="footer-top">
 				<div class="footer-logo">
-					<a href="index.html"><img src="{% static 'images/f-logo.png' %}" alt="" /></a>
+					<a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" style="width:80px;" alt="" /></a>
 				</div>
 				<div class="footer-nav">
 					<ul>
-						<li><a href="about.html">О нас</a></li>
-						<li><a href="blog.html">Блог</a></li>
-						<li><a href="contact.html">Контакты</a></li>
+						<li><a href="{% url 'index' %}">Главная</a></li>
+                        {% for genre in genres %}
+						    <li><a href="#">{{ genre.title }}</a></li>
+                        {% endfor %}
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
@@ -72,24 +75,20 @@
 				</div>
 				<div class="col-md-3 posts">
 					<h3>Последние статьи</h3>
-					<div class="post-info">
-						<a href="single.html">Статья 3</a>
-						<p>25 апреля 2025</p>
-					</div>
-					<div class="post-info">
-						<a href="single.html">Статья 2</a>
-						<p>15 марта 2025</p>
-					</div>
-					<div class="post-info">
-						<a href="single.html">Статья 1</a>
-						<p>25 февраля 2025</p>
-					</div>
+                    {% for post in three_post %}
+                        <div class="post-info">
+                            <a href="#">{{ post }}</a>
+                            <p>{{ post.date }}</p>
+                        </div>
+                    {% endfor %}
+
+
 				</div>
 				<div class="col-md-3 comments">
 					<h3>Комментарии</h3>
-					<p><a href="single.html">Сторонники информации в науке будут рассмотрены исключительно...</a></p>
-					<p><a href="single.html">Очень интересно!</a></p>
-					<p><a href="single.html">Стремящиеся вытеснить традиционное производство, нанотехнологии...</a></p>
+                    {% for comment in comments %}
+					    <p><a href="#">{{ comment.text }}</a></p>
+                    {% endfor %}
 				</div>
 				<div class="col-md-3 address">
 					<h3>Адрес</h4>

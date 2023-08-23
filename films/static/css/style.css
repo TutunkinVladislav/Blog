@@ -638,7 +638,7 @@ font-size: 36px;
   text-decoration:none;
 }
 .blog-left a.b-img img{
-  width: 100%;
+  width: 50%;
   margin: 1em 0;
 }
 .blog-left p{
@@ -750,7 +750,7 @@ font-size: 36px;
 	color: #473B3B;
 }
 .single-left img{
-	width:100%;
+	width:50%;
 	margin: 1em 0;
 }
 .single-left h5{

@@ -1,0 +1,42 @@
+{% extends 'posts.html' %}
+{% block title %}
+    <title>{{ post.title }}</title>
+{% endblock %}
+{% block content %}
+    <div class="blog">
+		<!-- container -->
+		<div class="container">
+			<div class="col-md-9 blog-grids">
+				<div class="blog-left single-left">
+					<h4>{{ post.title }}</h4>
+					<img src="{{ post.image.url }}" alt="" />
+					<p class="likes">Размещено {{ post.date }} (автор {{ post.user }}) / 2 комментария</p>
+					<p>{{ post.text|linebreaksbr }}</p>
+				</div>
+				<div class="single-grids">
+					<h2>Комментарии (2)</h2>
+                    {% for post_comment in post_comments %}
+                        <div class="single-comment">
+                            <div class="col-md-10 single-comment-right">
+                                <h6><b>3 февраля,2025 / {{ post_comment.name }}</b></h6>
+                                <p>{{ post_comment.text }}</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    {% endfor %}
+				</div>
+				<div class="single-reply">
+					<h4>Написать комментарий</h4>
+					<form>
+						<input type="text" placeholder="Имя" required="">
+						<input class="name" type="text" placeholder="E-mail" required="">
+						<textarea placeholder="Комментарий" required=""></textarea>
+						<input type="submit" value="Отправить">
+					</form>
+				</div>
+			</div>
+			{% include 'search_archive_gallery.html' %}
+		</div>
+		<!-- //container -->
+	</div>
+{% endblock %}

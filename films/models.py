@@ -104,6 +104,7 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
+        related_name='comments',
         verbose_name='Фильм'
     )
     name = models.CharField(
