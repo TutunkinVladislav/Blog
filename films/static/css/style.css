@@ -548,9 +548,10 @@ div#portfoliolist {
 	color: #A3A3A3;
 }
 .comments p{
-  background: #b8d500;
-  padding: 1em;
-  margin: 2em 0 0 0;
+	background: #b8d500;
+  	padding: 1em;
+  	margin: 2em 0 0 0;
+	color:#FFFFFF;
 }
 .comments a{
 	color:#FFF;
@@ -638,7 +639,7 @@ font-size: 36px;
   text-decoration:none;
 }
 .blog-left a.b-img img{
-  width: 50%;
+  width: 40%;
   margin: 1em 0;
 }
 .blog-left p{
@@ -750,7 +751,7 @@ font-size: 36px;
 	color: #473B3B;
 }
 .single-left img{
-	width:50%;
+	width:40%;
 	margin: 1em 0;
 }
 .single-left h5{

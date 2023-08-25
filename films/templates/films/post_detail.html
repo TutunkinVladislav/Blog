@@ -10,15 +10,22 @@
 				<div class="blog-left single-left">
 					<h4>{{ post.title }}</h4>
 					<img src="{{ post.image.url }}" alt="" />
-					<p class="likes">Размещено {{ post.date }} (автор {{ post.user }}) / 2 комментария</p>
-					<p>{{ post.text|linebreaksbr }}</p>
+					<p class="likes">Размещено {{ post.date }} (автор: {{ post.user.first_name }}) / {{ post_comments.count }} комментария</p>
+                    <p><b>Жанр: </b>{{ post.genre }}</p>
+                    <p><b>Страна: </b>{{ post.country }}</p>
+                    <p><b>Год выхода: </b>{{ post.year }}</p>
+                    <p><b>Актёры: </b>{{ post.actors }}</p>
+                    <p><b>Режиссёр: </b>{{ post.director }}</p>
+                    {% load filters %}
+                    <p><b>Продолжительность: </b>{{ post.play|convert_minutes }}</p>
+					<p><b>Описание:</b><br>{{ post.text|linebreaksbr }}</p>
 				</div>
 				<div class="single-grids">
-					<h2>Комментарии (2)</h2>
+					<h2>Комментарии ({{ post_comments.count }})</h2>
                     {% for post_comment in post_comments %}
                         <div class="single-comment">
                             <div class="col-md-10 single-comment-right">
-                                <h6><b>3 февраля,2025 / {{ post_comment.name }}</b></h6>
+                                <h6><b>{{ post_comment.date }} / {{ post_comment.name }}</b></h6>
                                 <p>{{ post_comment.text }}</p>
                             </div>
                             <div class="clearfix"> </div>

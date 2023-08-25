@@ -62,7 +62,7 @@
 					<ul>
 						<li><a href="{% url 'index' %}">Главная</a></li>
                         {% for genre in genres %}
-						    <li><a href="#">{{ genre.title }}</a></li>
+						    <li><a href="{% url 'page_genre' genre.id %}">{{ genre.title }}</a></li>
                         {% endfor %}
 					</ul>
 				</div>
@@ -77,7 +77,7 @@
 					<h3>Последние статьи</h3>
                     {% for post in three_post %}
                         <div class="post-info">
-                            <a href="#">{{ post }}</a>
+                            <a href="{% url 'page_post' post.pk %}">{{ post }}</a>
                             <p>{{ post.date }}</p>
                         </div>
                     {% endfor %}
@@ -87,7 +87,7 @@
 				<div class="col-md-3 comments">
 					<h3>Комментарии</h3>
                     {% for comment in comments %}
-					    <p><a href="#">{{ comment.text }}</a></p>
+					    <p>{{ comment.text }}<br>{{ comment.film }}</p>
                     {% endfor %}
 				</div>
 				<div class="col-md-3 address">

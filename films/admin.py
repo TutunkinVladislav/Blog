@@ -18,7 +18,7 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('film', 'name', 'text')
+    list_display = ('film', 'name', 'text', 'date')
     list_per_page = 10
 
 

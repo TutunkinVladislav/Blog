@@ -7,10 +7,11 @@
 		<!-- container -->
 		<div class="container">
 			<div class="col-md-9 blog-grids">
+            {% block for_search %}{% endblock %}
                 {% for post in posts %}
                     <div class="blog-left single-left">
-                        <a href="#">{{ post.title }}</a>
-                        <p class="likes">Размещено {{ post.date }} (автор {{ post.user }}) / {{ genre_comments }} комментария</p>
+                        <a href="{% url 'page_post' post.pk %}">{{ post.title }}</a>
+                        <p class="likes">Размещено {{ post.date }} (автор: {{ post.user.first_name }}) / {{ genre_comments }} комментария</p>
                         <a href="{% url 'page_post' post.pk %}" class="b-img"><img src="{{ MEDIA_URL }}{{ post.image.url }}" alt="" /></a>
                         <p>{{ post.description }}</p>
                         <a href="{% url 'page_post' post.pk %}" class="more">Читать далее...</a>

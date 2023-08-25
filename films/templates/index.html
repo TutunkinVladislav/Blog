@@ -24,7 +24,7 @@
                         {% cycle '<div class="col-md-3 port-1-left">' '' %}
                             <div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
                                 <div class="portfolio-wrapper">
-                                    <a href="#" class="b-link-stripe b-animate-go" title="">
+                                    <a href="{% url 'page_post' film.pk %}" class="b-link-stripe b-animate-go" title="">
                                         <img src="{{ MEDIA_URL }}{{ film.image.url }}">
                                         <div class="b-wrapper"><h2 class="b-animate b-from-left prt-1  b-delay03 ">{{ film.title }}</h2>
                                         </div>

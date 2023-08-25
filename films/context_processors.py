@@ -1,9 +1,11 @@
+from films.forms import SearchForm
 from films.models import Genre, Comment, Post
 
 
 def add_genre(request):
     genres = Genre.objects.all()
-    return {'genres': genres}
+    search_form = SearchForm()
+    return {'genres': genres, 'search_form': search_form}
 
 def add_comments(request):
     comments = Comment.objects.all().order_by('-id')[:3]

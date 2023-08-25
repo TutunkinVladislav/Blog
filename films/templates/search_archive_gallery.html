@@ -1,29 +1,28 @@
 <div class="col-md-3 sidebar">
     <h5>Поиск по блогу</h5>
     <div class="search">
-        <form>
-            <input type="text" value="Введите строку поиска..." onfocus="this.value='';"
-                   onblur="if (this.value == '') {this.value ='';}">
+        <form name="search" action="{% url 'search' %}" method="get">
+            {{ search_form.query }}
             <input type="submit" value="">
         </form>
     </div>
     <div class="sidebar-bottom">
         <h5>Архив</h5>
         <ul>
-            {% for post in posts %}
-                <li><a href="#">{{ post.date }}</a></li>
+            {% for film in films %}
+                <li><a href="{% url 'page_post' film.id %}">{{ film.date }}</a></li>
             {% endfor %}
         </ul>
     </div>
     <ul class="sidebar-last">
         <h5>Галерея</h5>
-        {% for post in posts %}
-            {% cycle '<ul>' '' '' '' %}
-            <li><a href="images/p1.jpg"><img src="{{ MEDIA_URL }}{{ post.image.url }}" alt=""></a></li>
+        {% for film in films %}
+            {% cycle '<ul>' '' '' %}
+            <li><a href="{{ film.image.url }}"><img src="{{ MEDIA_URL }}{{ film.image.url }}" alt=""></a></li>
             {% if forloop.last %}
                 </ul>
             {% else %}
-                {% cycle '' '' '' '</ul>' %}
+                {% cycle '' '' '</ul>' %}
             {% endif %}
         {% endfor %}
     </ul>

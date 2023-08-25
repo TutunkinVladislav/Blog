@@ -118,6 +118,10 @@ class Comment(models.Model):
     text = models.TextField(
         verbose_name='Комментарий'
     )
+    date = models.DateField(
+        'Дата',
+        auto_now_add=True,
+    )
 
     class Meta:
         verbose_name = 'Комментарий'

@@ -1,0 +1,12 @@
+{% extends 'posts.html' %}
+{% block title %}
+    <title>Поиск</title>
+{% endblock %}
+{% block for_search %}
+    <h2>Результаты поиска: <i>{{ query }}</i></h2>
+    {% if not posts %}
+        <div class="blog-left single-left">
+            <h3><i>Ничего не найдено</i></h3>
+        </div>
+    {% endif %}
+{% endblock %}
