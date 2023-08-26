@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
@@ -44,6 +45,15 @@ def search(request):
             Q(year__icontains=query) | Q(country__icontains=query) |
             Q(director__icontains=query) | Q(actors__icontains=query)
         )
-    films = Post.objects.all().order_by('-date')[:9]
-    context = {'query': query, 'posts': posts, 'films': films}
-    return render(request, 'search.html', context)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(posts, 3)
+        try:
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
+
+        films = Post.objects.all().order_by('-date')[:9]
+        context = {'posts': posts, 'query': query, 'films': films}
+        return render(request, 'search.html', context=context)

@@ -1412,3 +1412,25 @@ font-size: 36px;
 	  margin-top: 2em;
 	}
 }
+
+/*Pagination*/
+
+.pagin {
+	display: block;
+	margin: 30px auto;
+	text-align: center;
+}
+
+.pagin li {
+	display: inline-block;
+	padding: 10px;
+	font-size: 16px;
+}
+
+.pagin a:hover {
+	text-decoration: underline;
+}
+
+.current {
+	color: #fe0000;
+}
