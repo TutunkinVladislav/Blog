@@ -18,7 +18,7 @@
         <h5>Галерея</h5>
         {% for film in films %}
             {% cycle '<ul>' '' '' %}
-            <li><a href="{{ film.image.url }}"><img src="{{ MEDIA_URL }}{{ film.image.url }}" alt=""></a></li>
+            <li><a href="{% url 'page_post' film.id %}"><img src="{{ MEDIA_URL }}{{ film.image.url }}" alt=""></a></li>
             {% if forloop.last %}
                 </ul>
             {% else %}

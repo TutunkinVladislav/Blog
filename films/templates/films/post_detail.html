@@ -10,13 +10,14 @@
 				<div class="blog-left single-left">
 					<h4>{{ post.title }}</h4>
 					<img src="{{ post.image.url }}" alt="" />
-					<p class="likes">Размещено {{ post.date }} (автор: {{ post.user.first_name }}) / {{ post_comments.count }} комментария</p>
+                    {% load filters %}
+					<p class="likes">Размещено {{ post.date }} (автор: {{ post.user.first_name }}) / {{ post_comments.count }}
+                        {{ post_comments.count|declenation_comment }}</p>
                     <p><b>Жанр: </b>{{ post.genre }}</p>
                     <p><b>Страна: </b>{{ post.country }}</p>
                     <p><b>Год выхода: </b>{{ post.year }}</p>
                     <p><b>Актёры: </b>{{ post.actors }}</p>
                     <p><b>Режиссёр: </b>{{ post.director }}</p>
-                    {% load filters %}
                     <p><b>Продолжительность: </b>{{ post.play|convert_minutes }}</p>
 					<p><b>Описание:</b><br>{{ post.text|linebreaksbr }}</p>
 				</div>
@@ -34,10 +35,9 @@
 				</div>
 				<div class="single-reply">
 					<h4>Написать комментарий</h4>
-					<form>
-						<input type="text" placeholder="Имя" required="">
-						<input class="name" type="text" placeholder="E-mail" required="">
-						<textarea placeholder="Комментарий" required=""></textarea>
+					<form action="#" method="POST">
+                        {% csrf_token %}
+						{{ form }}
 						<input type="submit" value="Отправить">
 					</form>
 				</div>

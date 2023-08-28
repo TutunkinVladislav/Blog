@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^genre/(?P<id>\d+)$', views.page_genre, name='page_genre'),
     url(r'^posts/(?P<pk>\d+)$', views.PostDetailView.as_view(), name='page_post'),
     path('search', views.search, name='search'),
+    path('create_comment', views.create_comment, name='create_comment'),
 ]

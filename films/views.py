@@ -1,9 +1,10 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 
-from films.forms import SearchForm
+from films.forms import SearchForm, CreateCommentForm
 from films.models import Genre, Post, Comment
 
 
@@ -55,5 +56,10 @@ def search(request):
             posts = paginator.page(paginator.num_pages)
 
         films = Post.objects.all().order_by('-date')[:9]
-        context = {'posts': posts, 'query': query, 'films': films}
+        genre_comments = ''
+        context = {'posts': posts, 'query': query, 'films': films, 'genre_comments': genre_comments}
         return render(request, 'search.html', context=context)
+
+# def create_comment(request):
+#     form = CreateCommentForm()
+#     return render(request, 'films/post_detail.html', {'form': form})
