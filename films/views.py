@@ -1,8 +1,6 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
-from django.views import generic
+from django.shortcuts import render, get_object_or_404, redirect
 
 from films.forms import SearchForm, CreateCommentForm
 from films.models import Genre, Post, Comment
@@ -23,14 +21,24 @@ def page_genre(request, id):
     return render(request, 'posts.html', context=context)
 
 
-class PostDetailView(generic.DetailView):
-    model = Post
-
-    def get_context_data(self, **kwargs):
-        context = super(PostDetailView, self).get_context_data(**kwargs)
-        context['post_comments'] = Comment.objects.filter(film__exact=self.get_object())
-        context['films'] = Post.objects.all().order_by('-date')[:9]
-        return context
+def page_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post_comments = Comment.objects.filter(film__exact=post)
+    films = Post.objects.all().order_by('-date')[:9]
+    if request.method == 'POST':
+        form = CreateCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.film = post
+            comment.save()
+            return redirect('page_post', pk=post.pk)
+    else:
+        form = CreateCommentForm()
+    context = {
+        'post': post, 'post_comments': post_comments,
+        'films': films, 'form': form
+    }
+    return render(request, 'post_detail.html', context=context)
 
 
 def handler404(request, exception):
@@ -59,7 +67,3 @@ def search(request):
         genre_comments = ''
         context = {'posts': posts, 'query': query, 'films': films, 'genre_comments': genre_comments}
         return render(request, 'search.html', context=context)
-
-# def create_comment(request):
-#     form = CreateCommentForm()
-#     return render(request, 'films/post_detail.html', {'form': form})

@@ -15,7 +15,7 @@ def convert_minutes(value):
 @register.filter(name='declenation_comment')
 def declenation_comment(count):
     value = ('комментарий', 'комментария', 'комментариев')
-    keys = (2, 0, 1, 1, 4, 2)
+    keys = (2, 0, 1, 1, 1, 2)
     if count == '':
         return ''
     mod = count % 100

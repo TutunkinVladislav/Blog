@@ -814,13 +814,13 @@ font-size: 36px;
 	margin:2em 0 0 0;
 }
 .single-reply input[type="text"] {
-  width: 48%;
+  width: 47%;
   color: #898888;
   background: none;
   outline: none;
   font-size: 14px;
   padding: .5em;
-  margin: 0 25px 20px 0;
+  margin: 0 21px 20px 0;
   border: solid 1px #D5D4D4;
   -webkit-appearance: none;
 }
@@ -829,7 +829,7 @@ font-size: 36px;
 }
 .single-reply textarea {
   resize: none;
-  width: 100%;
+  width: 97%;
   color: #898888;
   background: none;
   font-size: 14px;

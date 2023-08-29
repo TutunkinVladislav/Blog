@@ -12,6 +12,17 @@ class SearchForm(forms.Form):
 
 
 class CreateCommentForm(forms.ModelForm):
+
     class Meta:
         model = Comment
         fields = ('name', 'email', 'text')
+        labels = {
+            'name': '',
+            'email': '',
+            'text': '',
+        }
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Имя'}),
+            'email': forms.TextInput(attrs={'placeholder': 'Email'}),
+            'text': forms.Textarea(attrs={'placeholder': 'Комментарий'}),
+        }
