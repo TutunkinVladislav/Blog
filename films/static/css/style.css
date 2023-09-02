@@ -1434,3 +1434,17 @@ font-size: 36px;
 .current {
 	color: #fe0000;
 }
+
+/*Registration*/
+
+.regist a {
+	display: inline-block;
+	color: #FFFFFF;
+	padding-bottom: 50px;
+	font-size: 16px;
+	text-decoration: none;
+}
+
+.regist a:hover {
+	text-decoration: underline;
+}
