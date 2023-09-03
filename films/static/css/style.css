@@ -18,7 +18,7 @@ body a {
 .banner{
   background: url(../images/6.jpg) no-repeat 0px 0px;
   background-size: cover;
-  min-height: 650px;
+  min-height: 600px;
 }
 .logo{
 	opacity: 0.7;
@@ -909,15 +909,16 @@ font-size: 36px;
 }
 .contact-form h3{
 	font-size: 36px;
-	margin: 0;
+	margin-top: -30px;
+	margin-bottom: 50px;
 	color: #473B3B;
 	text-align:center;
 }
 .contact-form form{
 	margin:2em 0 0 0;
 }
-.contact-form input[type="text"] {
-  width: 32.3%;
+.contact-form input[type="text"], input[type="password"], input[type="email"] {
+  width: 35%;
   color: #898888;
   background: none;
   outline: none;
@@ -1447,4 +1448,18 @@ font-size: 36px;
 
 .regist a:hover {
 	text-decoration: underline;
+}
+
+.regist_success {
+	background-color: #FFFFFF;
+	text-align: center;
+}
+.regist_success img {
+	width: 30%;
+}
+
+/*validation*/
+
+.errorlist {
+	color: #f10909;
 }

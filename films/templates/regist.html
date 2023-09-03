@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% block title %}
+    <title>Регистрация</title>
+{% endblock %}
+{% block content %}
+    {% load static %}
+    <div class="contact">
+		<!-- container -->
+		<div class="container">
+			<div class="contact-grids">
+                {% if success %}
+                    <div class="regist_success">
+                        <img src="{% static 'images/success_regist.jpg' %}" alt="" />
+                        <h2>Вы успешно зарегистрированы!</h2>
+                        <br>
+                        <p><a href="{% url 'index' %}">Вернуться на главную страницу</a></p>
+                    </div>
+                {% else %}
+                    <div class="contact-form">
+                        <h3>Регистрация</h3>
+                        <form action="{% url 'regist' %}" method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input type="submit" value="Сохранить">
+                        </form>
+                    </div>
+                {% endif %}
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

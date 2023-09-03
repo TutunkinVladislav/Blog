@@ -1,9 +1,11 @@
+from django.contrib.auth.models import Group
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
+from django.forms import forms
 from django.shortcuts import render, get_object_or_404, redirect
 
-from films.forms import SearchForm, CreateCommentForm
-from films.models import Genre, Post, Comment
+from films.forms import SearchForm, CreateCommentForm, CreateUserForm
+from films.models import Genre, Post, Comment, User
 
 
 def index(request):
@@ -67,3 +69,23 @@ def search(request):
         genre_comments = ''
         context = {'posts': posts, 'query': query, 'films': films, 'genre_comments': genre_comments}
         return render(request, 'search.html', context=context)
+
+
+def regist(request):
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+
+            user = User.objects.create_user(email, email, password)
+            user.first_name = name
+            group = Group.objects.get(name='Авторы')
+            user.groups.add(group)
+            user.save()
+            success = True
+            return render(request, 'regist.html', {'success': success})
+    else:
+        form = CreateUserForm()
+    return render(request, 'regist.html', {'form': form})
