@@ -1,8 +1,10 @@
 from django.contrib.auth.models import Group
+from django.core.mail import EmailMultiAlternatives
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from django.forms import forms
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import get_template
 
 from films.forms import SearchForm, CreateCommentForm, CreateUserForm
 from films.models import Genre, Post, Comment, User
@@ -85,6 +87,19 @@ def regist(request):
             user.groups.add(group)
             user.save()
             success = True
+
+            # Отправка письма
+            text = get_template('email/success_regist.html')
+            html = get_template('email/success_regist.html')
+            context = {'name': name}
+            subject = 'Регистрация'
+            from_email = 'admin@blogfilms.ru'
+            text_content = text.render(context)
+            html_content = html.render(context)
+            message = EmailMultiAlternatives(subject, text_content, from_email, [email])
+            message.attach_alternative(html_content, 'text/html')
+            message.send()
+
             return render(request, 'regist.html', {'success': success})
     else:
         form = CreateUserForm()
