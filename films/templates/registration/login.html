@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block title %}
+    <title>Авторизация</title>
+{% endblock %}
+{% block content %}
+    {% load static %}
+    <div class="contact">
+		<!-- container -->
+		<div class="container">
+			<div class="contact-grids">
+                <div class="contact-form">
+                    <h3>Авторизация</h3>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <p class="help-text">Имя пользователя - это Ваш email</p>
+                        <div class="auth">{{ form.as_p }}</div>
+                        <input type="hidden" name="next" value="{{ next }}">
+                        <input type="submit" value="Войти">
+                    </form>
+                    <p class="pass_reset"><a href="{% url 'password_reset' %}">Восстановление пароля</a></p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

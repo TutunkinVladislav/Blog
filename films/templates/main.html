@@ -38,12 +38,19 @@
 				</div>
 				<div class="banner-grid-info">
 					<div class="social-icons">
-                        <div class="regist"><a href="{% url 'regist' %}">Регистрация</a></div>
 						<ul>
 							<li><a href="#" class="facebook"></a></li>
 							<li><a href="#" class="facebook twitter"></a></li>
 							<li><a href="#" class="facebook dribble"></a></li>
 						</ul>
+                        {% if user.is_authenticated %}
+                            <a class="logout" href="{% url 'logout' %}?next={{ request.path }}">Выход</a>
+                            <br>
+                            <div class="regist">Вы: {{ user.first_name }}</div>
+                        {% else %}
+                            <div class="regist"><a href="{% url 'login' %}?next={{ request.path }}">Войти</a></div>
+                            <div class="regist"><a href="{% url 'regist' %}">Регистрация</a></div>
+                        {% endif %}
 					</div>
 				</div>
 				<div class="clearfix"> </div>

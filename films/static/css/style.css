@@ -1438,16 +1438,26 @@ font-size: 36px;
 
 /*Registration*/
 
-.regist a {
-	display: inline-block;
+.regist, .regist a {
+	display: inline;
 	color: #FFFFFF;
-	padding-bottom: 50px;
+	padding-top: 20px;
+	padding-left: 25px;
 	font-size: 16px;
 	text-decoration: none;
+	float: right;
 }
 
 .regist a:hover {
 	text-decoration: underline;
+}
+
+.logout {
+	display: block;
+	color: #FFFFFF;
+	padding-top: 20px;
+	font-size: 16px;
+	text-decoration: none;
 }
 
 .regist_success {
@@ -1462,4 +1472,24 @@ font-size: 36px;
 
 .errorlist {
 	color: #f10909;
+}
+
+/*authentication*/
+
+.auth input[type='password'] {
+	margin-left: 85px;
+}
+
+.auth label {
+	margin-right: 15px;
+}
+
+.help-text {
+	color: #5e5e5e;
+	font-size: 12px;
+}
+
+.pass_reset {
+	margin-top: 30px;
+	font-size: 16px;
 }
