@@ -27,6 +27,9 @@
                         <div class="single-comment">
                             <div class="col-md-10 single-comment-right">
                                 <h6><b>{{ post_comment.date }} / {{ post_comment.name }}</b></h6>
+                                {% if perms.films.can_delete_comment and post_comment.email == request.user.email %}
+                                    <a class="delete_comment" href="{% url 'delete_comment' %}">Удалить</a>
+                                {% endif %}
                                 <p>{{ post_comment.text }}</p>
                             </div>
                             <div class="clearfix"> </div>
@@ -35,11 +38,17 @@
 				</div>
 				<div class="single-reply">
 					<h4>Написать комментарий</h4>
-					<form action="{% url 'page_post' post.pk %}" method="POST">
-                        {% csrf_token %}
-                        {{ form }}
-						<input type="submit" value="Отправить">
-					</form>
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'page_post' post.pk %}" method="POST">
+                            {% csrf_token %}
+                            {{ form }}
+                            <input type="submit" value="Отправить">
+                        </form>
+                    {% else %}
+                        <p class="text-danger h4">Для добавления комментариев Вам нужно авторизоваться</p>
+                        <p><a class="reg_comment" href="{% url 'regist' %}">Регистрация</a></p>
+                        <p><a class="reg_comment" href="{% url 'login' %}?next={{ request.path }}">Войти</a></p>
+                    {% endif %}
 				</div>
 			</div>
 			{% include 'search_archive_gallery.html' %}

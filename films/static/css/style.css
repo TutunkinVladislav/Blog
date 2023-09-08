@@ -558,6 +558,14 @@ div#portfoliolist {
 	text-decoration:none;
 	line-height:1.8em;
 }
+
+.delete_comment {
+	float: right;
+	color: #003eae;
+	margin-right: 230px;
+	font-weight: bold;
+}
+
 .copyright {
   margin: 2em 0 0 0;
   text-align: right;
@@ -1466,6 +1474,17 @@ font-size: 36px;
 }
 .regist_success img {
 	width: 30%;
+}
+
+.reg_comment {
+	display: inline;
+	color: #003eae;
+	font-weight: bold;
+	padding-top: 20px;
+	padding-left: 25px;
+	font-size: 16px;
+	text-decoration: none;
+	float: left;
 }
 
 /*validation*/

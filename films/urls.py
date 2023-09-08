@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^posts/(?P<pk>\d+)$', views.page_post, name='page_post'),
     path('search', views.search, name='search'),
     path('regist', views.regist, name='regist'),
+    path('delete_comment', views.delete_comment, name='delete_comment'),
 ]

@@ -1,10 +1,13 @@
+from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import Group
 from django.core.mail import EmailMultiAlternatives
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from django.forms import forms
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import get_template
+from django.urls import reverse
 
 from films.forms import SearchForm, CreateCommentForm, CreateUserForm
 from films.models import Genre, Post, Comment, User
@@ -33,6 +36,8 @@ def page_post(request, pk):
         form = CreateCommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
+            comment.name = request.user.first_name
+            comment.email = request.user.email
             comment.film = post
             comment.save()
             return redirect('page_post', pk=post.pk)
@@ -104,3 +109,12 @@ def regist(request):
     else:
         form = CreateUserForm()
     return render(request, 'regist.html', {'form': form})
+
+
+@permission_required('films.can_delete_comment')
+def delete_comment(request):
+    comments = Comment.objects.all()
+    for comment in comments:
+        if comment.email == request.user.email:
+            comment.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

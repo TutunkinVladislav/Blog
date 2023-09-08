@@ -19,7 +19,6 @@ def declenation_comment(count):
     if count == '':
         return ''
     mod = count % 100
-    print(mod)
     if 9 < mod < 20:
         value_key = 2
     else:

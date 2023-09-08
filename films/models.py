@@ -126,6 +126,7 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+        permissions = (('can_delete_comment', 'Возможность удалять свой комментарий'),)
 
     def __str__(self):
         return f'{self.name}: {self.text}'
