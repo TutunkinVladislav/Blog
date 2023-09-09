@@ -11,12 +11,12 @@
                 {% for post in posts %}
                     {% load filters %}
                     <div class="blog-left single-left">
-                        <a href="{% url 'page_post' post.pk %}">{{ post.title }}</a>
+                        <a href="{% url 'page_post' post.slug %}">{{ post.title }}</a>
                         <p class="likes">Размещено {{ post.date }} (автор: {{ post.user.first_name }}) / {{ genre_comments }}
                             {{ genre_comments|declenation_comment }}</p>
-                        <a href="{% url 'page_post' post.pk %}" class="b-img"><img src="{{ MEDIA_URL }}{{ post.image.url }}" alt="" /></a>
+                        <a href="{% url 'page_post' post.slug %}" class="b-img"><img src="{{ MEDIA_URL }}{{ post.image.url }}" alt="" /></a>
                         <p>{{ post.description }}</p>
-                        <a href="{% url 'page_post' post.pk %}" class="more">Читать далее...</a>
+                        <a href="{% url 'page_post' post.slug %}" class="more">Читать далее...</a>
                     </div>
                 {% endfor %}
 
@@ -24,33 +24,6 @@
             {% include 'search_archive_gallery.html' %}
 
         {% block pagination %}
-{#            {% if posts.has_other_pages %}#}
-{#        <ul class="pagin">#}
-{#            {% if posts.has_previous %}#}
-{#                <li>#}
-{#                    <a href="{{ request.path }}?page={{ posts.previous_page_number }}">Назад</a>#}
-{#                </li>#}
-{#            {% else %}#}
-{#                <li>Назад</li>#}
-{#            {% endif %}#}
-{#            {% for i in posts.paginator.page_range %}#}
-{#                {% if posts.number == i %}#}
-{#                    <li class="current">{{ i }}</li>#}
-{#                {% else %}#}
-{#                    <li class="current">#}
-{#                        <a href="{{ request.path }}?query={{ query }}&amp;page={{ i }}">{{ i }}</a>#}
-{#                    </li>#}
-{#                {% endif %}#}
-{#            {% endfor %}#}
-{#            {% if posts.has_next %}#}
-{#                <li>#}
-{#                    <a href="{{ request.path }}?query={{ query }}&amp;page={{ posts.next_page_number }}">Вперёд</a>#}
-{#                </li>#}
-{#            {% else %}#}
-{#                <li>Вперёд</li>#}
-{#            {% endif %}#}
-{#        </ul>#}
-{#    {% endif %}#}
         {% endblock %}
 		</div>
 		<!-- //container -->

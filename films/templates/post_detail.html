@@ -39,7 +39,7 @@
 				<div class="single-reply">
 					<h4>Написать комментарий</h4>
                     {% if user.is_authenticated %}
-                        <form action="{% url 'page_post' post.pk %}" method="POST">
+                        <form action="{% url 'page_post' post.slug %}" method="POST">
                             {% csrf_token %}
                             {{ form }}
                             <input type="submit" value="Отправить">

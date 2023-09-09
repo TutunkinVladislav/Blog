@@ -10,7 +10,7 @@
         <h5>Архив</h5>
         <ul>
             {% for film in films %}
-                <li><a href="{% url 'page_post' film.id %}">{{ film.date }}</a></li>
+                <li><a href="{% url 'page_post' film.slug %}">{{ film.date }}</a></li>
             {% endfor %}
         </ul>
     </div>
@@ -18,7 +18,7 @@
         <h5>Галерея</h5>
         {% for film in films %}
             {% cycle '<ul>' '' '' %}
-            <li><a href="{% url 'page_post' film.id %}"><img src="{{ MEDIA_URL }}{{ film.image.url }}" alt=""></a></li>
+            <li><a href="{% url 'page_post' film.slug %}"><img src="{{ MEDIA_URL }}{{ film.image.url }}" alt=""></a></li>
             {% if forloop.last %}
                 </ul>
             {% else %}

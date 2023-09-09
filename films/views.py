@@ -19,8 +19,8 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 
-def page_genre(request, id):
-    obj = get_object_or_404(Genre, pk=id)
+def page_genre(request, slug):
+    obj = get_object_or_404(Genre, slug=slug)
     posts = Post.objects.filter(genre__exact=obj).order_by('-date')
     genre_comments = Comment.objects.filter(film__exact=posts[:1]).count()
     films = Post.objects.all().order_by('-date')[:9]
@@ -28,8 +28,8 @@ def page_genre(request, id):
     return render(request, 'posts.html', context=context)
 
 
-def page_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+def page_post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
     post_comments = Comment.objects.filter(film__exact=post)
     films = Post.objects.all().order_by('-date')[:9]
     if request.method == 'POST':
@@ -40,7 +40,7 @@ def page_post(request, pk):
             comment.email = request.user.email
             comment.film = post
             comment.save()
-            return redirect('page_post', pk=post.pk)
+            return redirect('page_post', slug=post.slug)
     else:
         form = CreateCommentForm()
     context = {

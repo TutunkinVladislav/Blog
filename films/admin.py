@@ -6,7 +6,7 @@ from films.models import Genre, Post, Comment
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = (
-        'user', 'genre', 'title',
+        'user', 'genre', 'title', 'slug',
         'year', 'country', 'director',
         'actors', 'play_minutes', 'date'
     )
@@ -24,7 +24,7 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
-    list_display = ('title', 'count_films')
+    list_display = ('title', 'slug', 'count_films')
 
     def count_films(self, obj):
         return obj.genre.count()

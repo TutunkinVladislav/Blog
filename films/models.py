@@ -15,6 +15,11 @@ class Genre(models.Model):
         verbose_name='Жанр',
         help_text='Введите название жанра'
     )
+    slug = models.SlugField(
+        verbose_name='Псевдоним',
+        max_length=70,
+        default=''
+    )
     image = models.ImageField(
         verbose_name='Изображение',
         upload_to='images'
@@ -47,6 +52,11 @@ class Post(models.Model):
         verbose_name='Заголовок',
         max_length=250,
         unique=True
+    )
+    slug = models.SlugField(
+        verbose_name='Псевдоним',
+        max_length=70,
+        default=''
     )
     description = models.TextField(
         verbose_name='Описание'

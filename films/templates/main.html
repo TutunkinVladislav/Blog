@@ -30,7 +30,7 @@
 							<ul class="cl-effect-1">
 								<li><a href="{% url 'index' %}">Главная</a></li>
                                 {% for genre in genres %}
-                                    <li><a href="{% url 'page_genre' genre.pk %}">{{ genre.title }}</a></li>
+                                    <li><a href="{% url 'page_genre' genre.slug %}">{{ genre.title }}</a></li>
                                 {% endfor %}
 
 							</ul>
@@ -70,7 +70,7 @@
 					<ul>
 						<li><a href="{% url 'index' %}">Главная</a></li>
                         {% for genre in genres %}
-						    <li><a href="{% url 'page_genre' genre.id %}">{{ genre.title }}</a></li>
+						    <li><a href="{% url 'page_genre' genre.slug %}">{{ genre.title }}</a></li>
                         {% endfor %}
 					</ul>
 				</div>
@@ -85,7 +85,7 @@
 					<h3>Последние статьи</h3>
                     {% for post in three_post %}
                         <div class="post-info">
-                            <a href="{% url 'page_post' post.pk %}">{{ post }}</a>
+                            <a href="{% url 'page_post' post.slug %}">{{ post }}</a>
                             <p>{{ post.date }}</p>
                         </div>
                     {% endfor %}
