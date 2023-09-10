@@ -42,7 +42,10 @@ def page_post(request, slug):
             comment.save()
             return redirect('page_post', slug=post.slug)
     else:
-        form = CreateCommentForm()
+        initial = {}
+        if request.user.is_authenticated:
+            initial = {'name': request.user.first_name, 'email': request.user.email}
+        form = CreateCommentForm(initial=initial)
     context = {
         'post': post, 'post_comments': post_comments,
         'films': films, 'form': form

@@ -22,8 +22,8 @@ class CreateCommentForm(forms.ModelForm):
             'text': '',
         }
         widgets = {
-            'name': forms.TextInput(attrs={'placeholder': 'Имя'}),
-            'email': forms.TextInput(attrs={'placeholder': 'Email'}),
+            'name': forms.TextInput(attrs={'placeholder': 'Имя', 'readonly': 'readonly'}),
+            'email': forms.TextInput(attrs={'placeholder': 'Email', 'readonly': 'readonly'}),
             'text': forms.Textarea(attrs={'placeholder': 'Комментарий'}),
         }
 
