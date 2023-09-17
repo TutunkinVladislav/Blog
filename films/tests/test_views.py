@@ -1,6 +1,5 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 
-from films.forms import CreateCommentForm
 from films.models import User, Genre, Post, Comment
 
 
@@ -115,7 +114,7 @@ class PagePostViewTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        User.objects.create(
+        User.objects.create_user(
             username='admin',
             email='admin@mail.ru',
             first_name='Администратор'
@@ -165,8 +164,14 @@ class PagePostViewTest(TestCase):
 
     def test_content(self):
         response = self.client.get('/films/posts/post')
-        # initial = {'name': 'Администратор', 'email': 'admin@mail.ru'}
-        # self.assertEquals(response.context['form'], CreateCommentForm(initial=initial))
         self.assertEquals(response.context['post'], Post.objects.get(slug='post'))
         self.assertEquals(response.context['post_comments'].get(), Comment.objects.get())
         self.assertEquals(response.context['films'].get(), Post.objects.get())
+
+
+class Handler404ViewTest(TestCase):
+
+    def test_page404(self):
+        response = self.client.get('/unexisting_page/')
+        self.assertTemplateUsed(response, '404.html')
+        self.assertEquals(response.status_code, 404)
