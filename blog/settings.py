@@ -66,6 +66,7 @@ TEMPLATES = [
                 'films.context_processors.add_genre',
                 'films.context_processors.add_comments',
                 'films.context_processors.add_three_post',
+                'films.context_processors.year',
             ],
         },
     },

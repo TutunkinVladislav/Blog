@@ -77,11 +77,11 @@
 				<div class="clearfix"> </div>
 			</div>
 			<div class="footer-bottom">
-				<div class="col-md-3 footer-left">
+				<div class="col-md-4 footer-left">
 					<h3>О нас</h3>
-					<p>Как уже неоднократно упомянуто, независимые государства, превозмогая сложившуюся непростую экономическую ситуацию, рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок.</p>
+					<p>На нашем сайте можно прочитать описание фильма, узнать жанр, страну, год выхода, продожительность. Также можно посмотреть актёров, которые снимались в определлёном фильме и узнать режиссёра, который снял этот фильм.</p>
 				</div>
-				<div class="col-md-3 posts">
+				<div class="col-md-4 posts">
 					<h3>Последние статьи</h3>
                     {% for post in three_post %}
                         <div class="post-info">
@@ -92,26 +92,15 @@
 
 
 				</div>
-				<div class="col-md-3 comments">
+				<div class="col-md-4 comments">
 					<h3>Комментарии</h3>
                     {% for comment in comments %}
 					    <p>{{ comment.text }}<br>{{ comment.film }}</p>
                     {% endfor %}
 				</div>
-				<div class="col-md-3 address">
-					<h3>Адрес</h4>
-					<ul>
-						<li>ООО Моя компания,</li>
-						<li>г. Москва, пр. Ленина, д. 1,</li>
-						<li>Россия</li>
-						<li>Телефон: +7 (495) 123 45 67</li>
-						<li>Факс: 8-000-1234567</li>
-						<li><a href="mailto:example@example.com">example@example.com</a></li>
-					</ul>
-				</div>
 				<div class="clearfix"> </div>
 				<div class="copyright">
-					<p>Copyrights © 2025 Birds. Все права защищены.</p>
+					<p class="text-center">Copyrights © {{ year }} FILM. Все права защищены.</p>
 				</div>
 			</div>
 		</div>

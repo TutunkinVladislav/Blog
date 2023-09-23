@@ -1371,6 +1371,13 @@ font-size: 36px;
 	.footer-top {
 		margin-bottom: 1em;
 	}
+	.footer-bottom{
+		margin: auto;
+		text-align: center;
+		align-content: center;
+		float: right;
+
+	}
 	.history-left {
 	  padding: 0;
 	}
