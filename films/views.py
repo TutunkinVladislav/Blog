@@ -85,7 +85,7 @@ def search(request):
             'posts': posts, 'query': query,
             'films': films, 'genre_comments': genre_comments
         }
-        return render(request, 'search.html', context=context)
+    return render(request, 'search.html', context=context)
 
 
 def regist(request):
