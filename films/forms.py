@@ -22,8 +22,14 @@ class CreateCommentForm(forms.ModelForm):
             'text': '',
         }
         widgets = {
-            'name': forms.TextInput(attrs={'placeholder': 'Имя', 'readonly': 'readonly'}),
-            'email': forms.TextInput(attrs={'placeholder': 'Email', 'readonly': 'readonly'}),
+            'name': forms.TextInput(attrs={
+                'placeholder': 'Имя',
+                'readonly': 'readonly'
+            }),
+            'email': forms.TextInput(attrs={
+                'placeholder': 'Email',
+                'readonly': 'readonly'
+            }),
             'text': forms.Textarea(attrs={'placeholder': 'Комментарий'}),
         }
 
@@ -49,7 +55,9 @@ class CreateUserForm(forms.Form):
     repeat_password = forms.CharField(
         label='',
         required=True,
-        widget=forms.PasswordInput(attrs={'placeholder': 'Введите пароль ещё раз'})
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Введите пароль ещё раз'
+        })
     )
 
     def clean(self):

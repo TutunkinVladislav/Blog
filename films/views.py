@@ -3,11 +3,9 @@ from django.contrib.auth.models import Group
 from django.core.mail import EmailMultiAlternatives
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
-from django.forms import forms
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import get_template
-from django.urls import reverse
 
 from films.forms import SearchForm, CreateCommentForm, CreateUserForm
 from films.models import Genre, Post, Comment, User
@@ -24,7 +22,10 @@ def page_genre(request, slug):
     posts = Post.objects.filter(genre__exact=obj).order_by('-date')
     genre_comments = Comment.objects.filter(film__exact=posts[:1]).count()
     films = Post.objects.all().order_by('-date')[:9]
-    context = {'posts': posts, 'obj': obj, 'genre_comments': genre_comments, 'films': films}
+    context = {
+        'posts': posts, 'obj': obj,
+        'genre_comments': genre_comments, 'films': films
+    }
     return render(request, 'posts.html', context=context)
 
 
@@ -44,7 +45,10 @@ def page_post(request, slug):
     else:
         initial = {}
         if request.user.is_authenticated:
-            initial = {'name': request.user.first_name, 'email': request.user.email}
+            initial = {
+                'name': request.user.first_name,
+                'email': request.user.email
+            }
         form = CreateCommentForm(initial=initial)
     context = {
         'post': post, 'post_comments': post_comments,
@@ -77,7 +81,10 @@ def search(request):
 
         films = Post.objects.all().order_by('-date')[:9]
         genre_comments = ''
-        context = {'posts': posts, 'query': query, 'films': films, 'genre_comments': genre_comments}
+        context = {
+            'posts': posts, 'query': query,
+            'films': films, 'genre_comments': genre_comments
+        }
         return render(request, 'search.html', context=context)
 
 
@@ -104,7 +111,9 @@ def regist(request):
             from_email = 'admin@blogfilms.ru'
             text_content = text.render(context)
             html_content = html.render(context)
-            message = EmailMultiAlternatives(subject, text_content, from_email, [email])
+            message = EmailMultiAlternatives(
+                subject, text_content, from_email, [email]
+            )
             message.attach_alternative(html_content, 'text/html')
             message.send()
 

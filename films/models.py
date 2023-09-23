@@ -70,7 +70,10 @@ class Post(models.Model):
     )
     year = models.IntegerField(
         verbose_name='Год',
-        validators=[MinValueValidator(1900), MaxValueValidator(datetime.date.today().year)]
+        validators=[
+            MinValueValidator(1900),
+            MaxValueValidator(datetime.date.today().year)
+        ]
     )
     country = models.CharField(
         verbose_name='Страна',
@@ -136,7 +139,9 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
-        permissions = (('can_delete_comment', 'Возможность удалять свой комментарий'),)
+        permissions = (
+            ('can_delete_comment', 'Возможность удалять свой комментарий'),
+        )
 
     def __str__(self):
         return f'{self.name}: {self.text}'
