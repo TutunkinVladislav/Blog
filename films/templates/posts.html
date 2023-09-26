@@ -8,6 +8,9 @@
 		<div class="container">
 			<div class="col-md-9 blog-grids">
             {% block for_search %}{% endblock %}
+                {% if not posts %}
+                    <h3>Здесь пока пусто!</h3>
+                {% endif %}
                 {% for post in posts %}
                     {% load filters %}
                     <div class="blog-left single-left">
